@@ -1,7 +1,5 @@
 import { Pool } from "pg";
 
-// import {} from 'dotenv'
-
 require("dotenv").config();
 
 const host = process.env.HOST;
