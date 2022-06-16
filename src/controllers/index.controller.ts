@@ -39,7 +39,6 @@ export const createUser = async (
 ): Promise<Response> => {
 	try {
 		const { name, email } = req.body;
-		// console.log(name, email);
 		const response: QueryResult = await pool.query(
 			"INSERT INTO users (name, email) VALUES ($1, $2)",
 			[name, email]
@@ -56,32 +55,15 @@ export const createUser = async (
 
 /**
 
-export const upadateUser = async (
+export const updateUser = async (
 	req: Request,
 	res: Response
 ): Promise<Response> => {
 	try {
-		const response: QueryResult = await pool.query("SQL");
-		return res.status(200).json(response.rows);
-		return res.status(200).json(response.rows);
-		console.log(body.params)
-
-
-	} catch (e) {
-		console.log(e);
-		return res.status(500).json("Internal Server Error");
-	}
-};
-export const deleteUser = async (
-	req: Request,
-	res: Response
-): Promise<Response> => {
-	try {
-		const response: QueryResult = await pool.query("SQL");
-		return res.status(200).json(response.rows);
-		return res.status(200).json(response.rows);
-		console.log(body.params)
-
+		// const response: QueryResult = await pool.query("SQL");
+		// return res.status(200).json(response.rows);
+		// return res.status(200).json(response.rows);
+		console.log(body.params);
 	} catch (e) {
 		console.log(e);
 		return res.status(500).json("Internal Server Error");
@@ -89,3 +71,19 @@ export const deleteUser = async (
 };
 
 */
+
+export const deleteUser = async (
+	req: Request,
+	res: Response
+): Promise<Response> => {
+	try {
+		const id = parseInt(req.params.id);
+
+		await pool.query("DELETE FROM users WHERE id = $1", [id]);
+
+		return res.json(`User ${id} deleted succeeefully`);
+	} catch (e) {
+		console.log(e);
+		return res.status(500).json("Internal Server Error");
+	}
+};

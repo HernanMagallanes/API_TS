@@ -5,6 +5,7 @@ import {
 	getUser,
 	getUserbyId,
 	createUser,
+	deleteUser,
 } from "../controllers/index.controller";
 
 router.get("/users", getUser);
@@ -13,7 +14,8 @@ router.get("/users/:id", getUserbyId);
 
 router.post("/users", createUser);
 
-// router.put("/users/:id", getUser);
-// router.delete("/users/:id", getUser);
+// router.put("/users/:id", updateUser);
+
+router.delete("/users/:id", deleteUser);
 
 export default router;
